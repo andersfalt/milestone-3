@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wayfarer</title>
+</head>
+<body>
+    {% for place in places %}
+    {{ place.place_name }}<br>
+    {{ place.country_name }}<br>
+    {{ place.place_description }}<br>
+    {{ place.place_website }}<br>
+    {{ place.place_map }}<br>
+{% endfor %}
+</body>
+</html>
