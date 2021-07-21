@@ -28,7 +28,7 @@
                 <li><a href="#">Add Place</a></li>
                 <li><a href="#">Manage Places</a></li>
                 <li><a href="#">Log in</a></li>
-                <li><a href="#">Register</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
             </ul>
             </div>
         </nav>
@@ -39,11 +39,10 @@
                 <li><a href="#">Add Place</a></li>
                 <li><a href="#">Manage Places</a></li>
                 <li><a href="#">Log in</a></li>
-                <li><a href="#">Register</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
         </ul>
     </header>
 
-    <h1>I'm part of the base template!</h1>
     {% block content %}
     {% endblock %}
 
