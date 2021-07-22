@@ -25,11 +25,17 @@
             <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="{{ url_for('get_places') }}">Home</a></li>
-                <li><a href="#">Add Place</a></li>
-                <li><a href="#">Manage Places</a></li>
-                <li><a href="{{ url_for('profile', username=session['user']) }}">User Profile</a></li>
-                <li><a href="{{ url_for('login') }}">Log in</a></li>
+                {% if session.user %}
+                    <li><a href="#">Add Place</a></li>
+                    {% if session.user|lower == "admin"|lower %} 
+                        <li><a href="#">Manage Places</a></li>
+                    {% endif %}
+                    <li><a href="{{ url_for('profile', username=session['user']) }}">User Profile</a></li>
+                    <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                {% else %}    
+                <li><a href="{{ url_for('login') }}">Log In</a></li>
                 <li><a href="{{ url_for('register') }}">Register</a></li>
+                {% endif %}
             </ul>
             </div>
         </nav>
@@ -40,6 +46,7 @@
                 <li><a href="#">Add Place</a></li>
                 <li><a href="#">Manage Places</a></li>
                 <li><a href="{{ url_for('profile', username=session['user']) }}">User Profile</a></li>
+                <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                 <li><a href="{{ url_for('login') }}">Log in</a></li>
                 <li><a href="{{ url_for('register') }}">Register</a></li>
         </ul>
