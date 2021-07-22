@@ -27,6 +27,7 @@
                 <li><a href="{{ url_for('get_places') }}">Home</a></li>
                 <li><a href="#">Add Place</a></li>
                 <li><a href="#">Manage Places</a></li>
+                <li><a href="{{ url_for('profile', username=session['user']) }}">User Profile</a></li>
                 <li><a href="{{ url_for('login') }}">Log in</a></li>
                 <li><a href="{{ url_for('register') }}">Register</a></li>
             </ul>
@@ -38,6 +39,7 @@
                 <li><a href="{{ url_for('get_places') }}">Home</a></li>
                 <li><a href="#">Add Place</a></li>
                 <li><a href="#">Manage Places</a></li>
+                <li><a href="{{ url_for('profile', username=session['user']) }}">User Profile</a></li>
                 <li><a href="{{ url_for('login') }}">Log in</a></li>
                 <li><a href="{{ url_for('register') }}">Register</a></li>
         </ul>
