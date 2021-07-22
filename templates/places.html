@@ -1,14 +1,59 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h1>Places</h1>
+<h3 class="light-blue-text text-darken-4 center-align">Favourite Places</h3>
 
+<br>
+
+<div class="flexbox">
     {% for place in places %}
-        {{ place.place_name }}<br>
-        {{ place.country_name }}<br>
-        {{ place.place_description }}<br>
-        {{ place.place_website }}<br>
-        {{ place.place_map }}<br>
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <a class="btn-floating halfway-fab waves-effect waves-light red open-description-btn activator"><i
+                            class="fas fa-plus"></i>Description</a>
+                    <img class="activator" src="static/images/sok.jpg">
+                </div>
+                <div class="card-content">
+                    <span class="center-align card-title activator grey-text text-darken-4"><strong>{{ place.place_name }},
+                            {{ place.country_name }}</strong>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Card Title<i
+                            class="material-icons right">close</i></span>
+                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-image">
+                    <img class="activator" src="static/images/sok.jpg">
+                    <span class="card-title">{{ place.place_name }},
+                        {{ place.category_name }}</span>
+                    <a class="btn-floating halfway-fab waves-effect waves-light orange darken-3 activator"><i
+                            class="fas fa-info"></i></a>
+                </div>
+                <div class="card-content">
+                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient
+                        because I require little markup to use effectively.</p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">{{ place.place_name }}<br>
+                        {{ place.category_name }}<i
+                            class="fas fa-times"></i></span>
+                    <p>{{ place.place_description }}</p>
+                    <p><strong>Link:</strong>{{ place.place_website }}</p>
+                    <p>Map: {{ place.place_map }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {% endfor %}
+</div>
 
 {% endblock %}
