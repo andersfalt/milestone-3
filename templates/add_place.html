@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="white-text text-darken-4 center-align">Add Place</h3>
+
+<div class="row card-panel grey lighten-5">
+    <form class="col s12" method="POST" action="{{ url_for('add_place') }}">
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
+                <input id="place_name" name="place_name" minlength="5" maxlength="50" type="text" class="validate"
+                    required>
+                <label for="place_name">Place Name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
+                <input id="country_name" name="country_name" minlength="5" maxlength="50" type="text" class="validate"
+                    required>
+                <label for="Country_name">Country</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
+                <textarea id="place_description" name="place_description" minlength="5" maxlength="600"
+                    class="materialize-textarea validate" required></textarea>
+                <label for="place_description">Place Description</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
+                <textarea id="place_website" name="place_website" minlength="5" maxlength="30"
+                    class="materialize-textarea validate" required></textarea>
+                <label for="place_website">Website</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-map-marker-alt prefix light-blue-text text-darken-4"></i>
+                <textarea id="place_map" name="place_map" minlength="5" maxlength="100"
+                    class="materialize-textarea validate"></textarea>
+                <label for="place_map">Website</label>
+            </div>
+        </div>
+        <!-- submit button -->
+        <div class="row">
+            <div class="col s12 center-align">
+                <button type="submit" class="btn-large orange darken-3 text-shadow">
+                    Add Place <i class="fas fa-plus-square right"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+    <form method="POST" action="{{ url_for('upload_place_image', places=places_id._id)}}" id="upload_place_image"
+        name="uploade_place_image" enctype="multipart/form-data">
+        <div id="upload">
+            <label for="media" class="new-file-upload btn center">
+                <i class="fas fa-upload"></i>Upload Image</label>
+
+            <input id="media" name="file" type="file" value="{{places_id.file}}"
+                onchange="GetFileSize('profile')" />{{places_id.file}}
+            <p id="fp"></p>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -61,12 +61,12 @@ def login():
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
-                    existing_user["password"], request.form.get("password")):
-                        session["user"] = request.form.get("username").lower()
-                        flash("Welcome, {}".format(
-                            request.form.get("username")))
-                        return redirect(url_for(
-                            "profile", username=session["user"]))
+                existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome, {}".format(
+                    request.form.get("username")))
+                return redirect(url_for(
+                    "profile", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -98,6 +98,23 @@ def logout():
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
+
+
+@app.route("/add_places", methods=["GET", "POST"])
+def add_place():
+    if request.method == "POST":
+        places = {
+            "place_name": request.form.get("place_name"),
+            "country_name": request.form.get("country_name"),
+            "place_description": request.form.get("place_description"),
+            "place_website": request.form.get("place_website"),
+            "place_map": request.form.get("place_map"),
+        }
+        mongo.db.places.insert_one(places)
+        flash("New Place Successfully Added")
+        return redirect(url_for("get_places"))
+
+    return render_template("add_place.html")
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="light-blue-text text-darken-4 center-align">Favourite Places</h3>
+<h3 class="white-text text-darken-4 center-align">Favourite Places</h3>
 
 <br>
 
@@ -34,7 +34,7 @@
                     <img class="activator" src="static/images/sok.jpg">
                     <span class="card-title">{{ place.place_name }},
                         {{ place.category_name }}</span>
-                    <a class="btn-floating halfway-fab waves-effect waves-light orange darken-3 activator"><i
+                    <a class="btn-floating halfway-fab waves-effect waves-light orange darken-3 activator tooltipped" data-position="bottom" data-tooltip="See more"><i
                             class="fas fa-info"></i></a>
                 </div>
                 <div class="card-content">

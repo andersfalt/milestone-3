@@ -1,3 +1,57 @@
+body {
+    background-image: url("../../static/images/wayfarer-back.jpg");
+}
+
+
 .flashes h4 {
     line-height: 2;
+}
+
+.brand-logo {
+    width: 200px;
+    height: 100px;
+    margin-top: 5px;
+    display: inline-block;
+    }
+    
+.logo>img {
+    vertical-align: left;
+        position: relative; 
+    top:1px; 
+}
+
+.nav-extended{
+    height: 100px;
+}
+
+
+
+/*  ==== FOOTER ====  */
+.page-footer {
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    min-height: 25px;
+    text-align: center;
+    font-size: 15px;
+}
+
+/* Social Links */
+.social-links li a i {
+    font-size: 1.4rem;
+    color: rgba(151, 151, 151, 0.761);
+    padding: 5px;
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+}
+
+.social-links li a i:hover {
+    color: rgba(152, 247, 76, 0.922);
+}
+
+.display-inline {
+    display: inline;
 }
