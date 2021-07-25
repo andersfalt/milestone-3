@@ -31,7 +31,7 @@
                         {% if session.user %}
                         <li><a href="{{ url_for('add_place') }}">Add Place</a></li>
                         {% if session.user|lower == "admin"|lower %}
-                        <li><a href="#">Manage Places</a></li>
+                        <li><a href="">Edit Places</a></li>
                         {% endif %}
                         <li><a href="{{ url_for('profile', username=session['user']) }}">User Profile</a></li>
                         <li><a href="{{ url_for('logout') }}">Log Out</a></li>
@@ -47,7 +47,7 @@
         <ul class="sidenav" id="mobile-demo">
             <li><a href="{{ url_for('get_places') }}">Home</a></li>
             <li><a href="#">Add Place</a></li>
-            <li><a href="#">Manage Places</a></li>
+            <li><a href="#">Edit Places</a></li>
             <li><a href="{{ url_for('profile', username=session['user']) }}">User Profile</a></li>
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             <li><a href="{{ url_for('login') }}">Log in</a></li>
@@ -67,12 +67,13 @@
         {% endif %}
         {% endwith %}
     </section>
-    <main class="container">
-        {% block content %}
-        {% endblock %}
-    </main>
 
-<footer class="page-footer cyan darken-4">
+<main class="container">
+    {% block content %}
+    {% endblock %}
+</main>
+
+<footer class="page-footer cyan darken-4" style="position:bottom:0;left:0;width:100%">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">

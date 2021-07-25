@@ -1,7 +1,7 @@
 body {
-    background-image: url("../../static/images/wayfarer-back.jpg");
+    background: rgb(140,79,2);
+background: linear-gradient(0deg, rgba(140,79,2,1) 0%, rgba(57,147,156,1) 49%, rgba(0,96,100,1) 100%);
 }
-
 
 .flashes h4 {
     line-height: 2;

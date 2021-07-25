@@ -4,6 +4,7 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
@@ -82,9 +83,12 @@ def login():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    # grab the session user's username from db
+
+    places = mongo.db.places.find()
+
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
+
 
     if session["user"]:
         return render_template("profile.html", username=username)
@@ -106,9 +110,11 @@ def add_place():
         places = {
             "place_name": request.form.get("place_name"),
             "country_name": request.form.get("country_name"),
+            "cover_picture": request.form.get("cover_picture"),
             "place_description": request.form.get("place_description"),
             "place_website": request.form.get("place_website"),
             "place_map": request.form.get("place_map"),
+            "created_by": session["user"]
         }
         mongo.db.places.insert_one(places)
         flash("New Place Successfully Added")
