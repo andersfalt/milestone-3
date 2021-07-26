@@ -2,36 +2,34 @@
 {% block content %}
 
 <br>
-<h3 class="white-text text-darken-4 center-align">Favourite Places</h3>
+<h3 class="uppercase white-text text-darken-4 center-align">Great places to visit</h3>
 <br>
 
-
-<div class="flexbox">
+<div class="row">
     {% for place in places %}
-    <div class="row">
-        <div class="col l6 s12 m4">
-            <div class="card">
-
-                <div class="card-image">
-                    <img src="{{ place.cover_picture }}" alt="Place picture">
-                    <a class="btn-floating halfway-fab waves-effect waves-light orange darken-3 activator tooltipped"
-                        data-position="bottom" data-tooltip="See more"><i class="fas fa-info"></i></a>
-                </div>
-                <div class="card-content card-title activator">
-                    <p>{{ place.place_name }},<br>{{ place.country_name }}</p>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">{{ place.place_name }}<br>
-                        {{ place.category_name }}<i class="fas fa-times"></i></span>
-                    <p>{{ place.place_description }}</p>
-                    <p><strong>Link:</strong>{{ place.place_website }}</p>
-                    <p>Map: {{ place.place_map }}</p>
-                    <p>Created by: {{ place.created_by }}</p>
-                </div>
+    <div class="col s12 m6 l4">
+        <div class="card medium">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="{{ place.cover_picture }}" alt="Place picture">
+            </div>
+            <div class="card-content card-title activator">
+                <p>{{ place.place_name }},<br>{{ place.country_name }}</p>
+                {% if session.user|lower == place.created_by|lower %}
+                <a href="" class="btn-small red accent-4">Delete</a>
+                <a href="" class="btn-small cyan darken-4">Edit</a>
+                {% endif %}
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">{{ place.place_name }}<br>
+                    {{ place.category_name }}<i class="fas fa-times"></i></span>
+                <p>{{ place.place_description }}</p>
+                <a href="{{ place.place_website }}" target="_blank">Website</a>
+                <a href="{{ place.place_map }}" target="_blank">See Map</a>
+                <p>Created by: {{ place.created_by }}</p>
             </div>
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
 </div>
 
 {% endblock %}

@@ -3,8 +3,23 @@ body {
 background: linear-gradient(0deg, rgba(140,79,2,1) 0%, rgba(57,147,156,1) 49%, rgba(0,96,100,1) 100%);
 }
 
+.uppercase {
+    text-transform: uppercase;
+}
 .flashes h4 {
     line-height: 2;
+}
+
+.card .card-image img {
+    display: block;
+    border-radius: 2px 2px 0 0;
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 150%;
+    height: 100%;
 }
 
 .brand-logo {
@@ -29,9 +44,8 @@ background: linear-gradient(0deg, rgba(140,79,2,1) 0%, rgba(57,147,156,1) 49%, r
 /*  ==== FOOTER ====  */
 .page-footer {
     margin: 0;
-    position: absolute;
     width: 100%;
-    color: rgb(255, 255, 255);
+    position: relative;
     min-height: 25px;
     text-align: center;
     font-size: 15px;
@@ -49,7 +63,7 @@ background: linear-gradient(0deg, rgba(140,79,2,1) 0%, rgba(57,147,156,1) 49%, r
 }
 
 .social-links li a i:hover {
-    color: rgba(152, 247, 76, 0.922);
+    color: #ef6c00;
 }
 
 .display-inline {
