@@ -123,6 +123,25 @@ def add_place():
     return render_template("add_place.html")
 
 
+@app.route("/edit_places/<place_id>", methods=["GET", "POST"])
+def edit_places(place_id):
+    if request.method == "POST":
+        submit = {
+            "place_name": request.form.get("place_name"),
+            "country_name": request.form.get("country_name"),
+            "cover_picture": request.form.get("cover_picture"),
+            "place_description": request.form.get("place_description"),
+            "place_website": request.form.get("place_website"),
+            "place_map": request.form.get("place_map"),
+            "created_by": session["user"]
+        }
+        mongo.db.places.update({"_id": ObjectId(place_id)}, submit)
+        flash("Place Successfully Updated!")
+        return redirect(url_for("get_places"))
+    place = mongo.db.places.find_one({"_id": ObjectId(place_id)})
+    return render_template("edit_place.html", place=place)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
