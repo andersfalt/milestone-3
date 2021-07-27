@@ -11,7 +11,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-pencil-alt prefix orange-text text-darken-4"></i>
-                <input id="place_name" value="{{ places_place_name }}" name="place_name" minlength="5" maxlength="50"
+                <input id="place_name" value="{{ place.place_name }}" name="place_name" minlength="5" maxlength="50"
                     type="text" class="validate" required>
                 <label for="place_name">Place Name</label>
                 <span class="helper-text" data-error="What is the name of the place?"></span>
@@ -20,7 +20,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-globe prefix orange-text text-darken-4"></i>
-                <input id="country_name" name="country_name" minlength="5" maxlength="50" type="text" class="validate"
+                <input id="country_name" name="country_name" minlength="5" maxlength="50" value="{{ place.country_name }}" type="text" class="validate"
                     required>
                 <label for="Country_name">Country</label>
                 <span class="helper-text" data-error="In what coutry is the place located?"></span>
@@ -30,11 +30,9 @@
             <div class="input-field col s12">
                 <i class="far fa-image prefix orange-text text-darken-4"></i>
                 <input id="cover_picture" name="cover_picture" minlength="5" maxlength="200" type="text"
-                    class="validate"
+                    class="validate" value="{{ place.cover_picture }}"
                     pattern="^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\%$&'\(\)\*\+,;=.]+$" required>
                 <label for="cover_picture">Cover Picture</label>
-                <span class="helper-text" data-error="Please add a Valid URL Link to the picture">Valid URL link to
-                    picture</span>
             </div>
         </div>
         <div class="row">
@@ -42,7 +40,7 @@
                 <i class="fas fa-align-left prefix orange-text text-darken-4"></i>
                 <textarea id="place_description" name="place_description" minlength="5" maxlength="600"
                     class="materialize-textarea validate" required>
-                    {{ place.place_description }}
+                    {{- place.place_description -}}
                 </textarea>
                 <label for="place_description">Place Description</label>
             </div>
@@ -51,7 +49,9 @@
             <div class="input-field col s12">
                 <i class="fas fa-window-maximize prefix orange-text text-darken-4"></i>
                 <textarea id="place_website" name="place_website" minlength="5" maxlength="30"
-                    class="materialize-textarea validate"></textarea>
+                    class="materialize-textarea validate">
+                    {{- place.place_website -}}
+                </textarea>
                 <label for="place_website">Website</label>
                 <span class="helper-text" data-error="Please add a Valid URL Link">Website link</span>
             </div>
@@ -60,7 +60,9 @@
             <div class="input-field col s12">
                 <i class="fas fa-map-marker-alt prefix orange-text text-darken-4"></i>
                 <textarea id="place_map" name="place_map" minlength="5" maxlength="100"
-                    class="materialize-textarea validate"></textarea>
+                    class="materialize-textarea validate">
+                    {{- place.place_map -}}
+                </textarea>
                 <label for="place_map">Map</label>
                 <span class="helper-text" data-error="Please add a valid Google Map link">Google Map link</span>
             </div>
