@@ -4,11 +4,12 @@
 <br>
 <div class="row">
     <div class="col s12 m8 offset-m2">
-        <div class="card-panel">
-            <h3 class="center-align light-blue-text text-darken-4">
-                {{ username }}'s Profile
+        <div class="card-panel profile-card-panel">
+            <h3 class="center-align profile-header">
+                {{ username }}'s profile
+                <a class="btn-small cyan darken-4 text-shadow" href="{{ url_for('add_place') }}">Add a Place <i
+                        class="fas fa-map-marker-alt"></i></a>
             </h3>
-            <a class="btn-large cyan darken-4 text-shadow" href="{{ url_for('add_place') }}">Add place <i class="fas fa-map-marker-alt"></i></a>
         </div>
     </div>
 </div>
@@ -16,40 +17,44 @@
 <h3 class="white-text text-darken-4 center-align">My Places</h3>
 <br>
 
-<section>
 
-    <div class="flexbox">
-        {% for place in places %}
-        {% if session.user|lower == places.created_by|lower %}
-        <div class="row">
-            <div class="col l6 s12 m4">
-                <div class="card">
-
-                    <div class="card-image">
-                        <img src="{{ place.cover_picture }}" alt="Place picture">
-                        <a class="btn-floating halfway-fab waves-effect waves-light orange darken-3 activator tooltipped"
-                            data-position="bottom" data-tooltip="See more"><i class="fas fa-info"></i></a>
-                    </div>
-                    <div class="card-content card-title activator">
-                        <p>{{ place.place_name }},<br>{{ place.country_name }}</p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{{ place.place_name }}<br>
-                            {{ place.category_name }}<i class="fas fa-times"></i></span>
-                        <p>{{ place.place_description }}</p>
-                        <p><strong>Link:</strong>{{ place.place_website }}</p>
-                        <p>Map: {{ place.place_map }}</p>
-                        <a href="{{ url_for('delete_place', place_id=place._id) }}"
-                            class="btn-small green accent-4">Done</a>
-                        <a href="{{ url_for('edit_places', place_id=place._id) }}"
-                            class="btn-small light-blue lighten-1">Edit</a>
-                    </div>
-                </div>
+<div class="row">
+    {% for place in places %}
+    <div class="col s12 m6 l4">
+        <div class="card medium">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="{{ place.cover_picture }}" alt="Place picture">
+            </div>
+            <div class="card-content card-title activator">
+                <p>{{ place.place_name }},<br>{{ place.country_name }}</p>
+                {% if session.user|lower == place.created_by|lower %}
+                <a href="#{{ url_for('delete_place', place_id=place._id) }}"
+                    class="btn-small red accent-4 modal-trigger">Delete</a>
+                <a href="{{ url_for('edit_places', place_id=place._id) }}" class="btn-small cyan darken-4">Edit</a>
+                {% endif %}
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">{{ place.place_name }}<br>
+                    {{ place.category_name }}<i class="fas fa-times"></i></span>
+                <p>{{ place.place_description }}</p>
+                <a href="{{ place.place_website }}" target="_blank">Website</a>
+                <a href="{{ place.place_map }}" target="_blank">See Map</a>
+                <p>Created by: {{ place.created_by }}</p>
             </div>
         </div>
-        {% endif %}
-        {% endfor %}
     </div>
-</section>
+    <div id="{{ url_for('delete_place', place_id=place._id) }}" class="modal">
+        <div class="modal-content">
+            <h5>Are you sure you want to delete this place?</h5>
+        </div>
+        <div class="modal-footer">
+            <a href="{{ url_for('delete_place', place_id=place._id) }}"
+                class="modal-action modal-close waves-effect waves-red btn red lighten-1">Yes</a>
+            <a href="{{ url_for('get_places') }}"
+                class="modal-action modal-close waves-effect waves-green btn green lighten-1">Cancel</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 
 {% endblock %}

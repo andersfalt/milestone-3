@@ -27,6 +27,13 @@ def get_places():
     return render_template("places.html", places=places)
 
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    places = mongo.db.places.find({"$text": {"$search": query}})
+    return render_template("places.html", places=places)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -84,16 +91,18 @@ def login():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
 
-    places = mongo.db.places.find()
+    if session.get("user"):
 
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
+        username = mongo.db.users.find_one({"username": session["user"]})["username"]
 
+        if session["user"] == username:
+            places = list(mongo.db.places.find({"created_by": username}))
 
-    if session["user"]:
-        return render_template("profile.html", username=username)
+            return render_template("profile.html", username=username, places=places)
 
-    return redirect(url_for("login"))
+    else:
+        flash("You need to be logged in to view this")
+        return redirect(url_for("login"))
 
 
 @app.route("/logout")
