@@ -68,13 +68,13 @@ def login():
 
         if existing_user:
             # ensure hashed password matches user input
-            if check_password_hash(
-                existing_user["password"], request.form.get("password")):
+            if check_password_hash(existing_user["password"],
+                                   request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(
                     request.form.get("username")))
-                return redirect(url_for(
-                    "profile", username=session["user"]))
+                return redirect(url_for("profile",
+                                        username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -92,13 +92,13 @@ def login():
 def profile(username):
 
     if session.get("user"):
-
-        username = mongo.db.users.find_one({"username": session["user"]})["username"]
+        username = mongo.db.users.find_one({"username":
+                                            session["user"]})["username"]
 
         if session["user"] == username:
             places = list(mongo.db.places.find({"created_by": username}))
-
-            return render_template("profile.html", username=username, places=places)
+            return render_template("profile.html",
+                                   username=username, places=places)
 
     else:
         flash("You need to be logged in to view this")
