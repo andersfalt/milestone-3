@@ -2,14 +2,13 @@
 {% block content %}
 
 <br>
-<div class="row">
+<div class="row center-align">
     <div class="col s12 m8 offset-m2">
-        <div class="card-panel profile-card-panel">
-            <h3 class="center-align profile-header">
-                {{ username }}'s profile
-                <a class="btn-small cyan darken-4 text-shadow" href="{{ url_for('add_place') }}">Add a Place <i
-                        class="fas fa-map-marker-alt"></i></a>
-            </h3>
+        <div class="card-panel search-panel">
+            <h4 class="center-align profile-header">
+                {{ username }}'s profile</h4>
+            <a class="btn-small orange darken-3 text-shadow" href="{{ url_for('add_place') }}">Add a Place <i
+                    class="fas fa-map-marker-alt"></i></a>
         </div>
     </div>
 </div>

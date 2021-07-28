@@ -6,6 +6,23 @@ body {
     flex-direction: column;
 }
 
+.search-panel{
+    border-radius: 15px;
+    background-color: transparent;
+    margin-top: 50px;
+}
+
+.btn{
+    margin: 5px;
+}
+
+.profile-header{
+    color: white;
+}
+
+.bold{
+    font-weight: normal;
+}
 
 main {
     flex: 1 0 auto;
